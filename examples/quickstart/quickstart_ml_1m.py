@@ -38,7 +38,7 @@ from lightfm import LightFM
 # 
 # Model training is accomplished via SGD (stochastic gradient descent). This means that for every pass through the data --- an epoch --- the model learns to fit the data more and more closely. We'll run it for 10 epochs in this example. We can also run it on multiple cores, so we'll set that to 2. (The dataset in this example is too small for that to make a difference, but it will matter on bigger datasets.)
 
-# In[57]:
+# In[4]:
 
 model = LightFM(loss='warp')
 model.fit(data['train'], epochs=30, num_threads=2)
@@ -46,14 +46,14 @@ model.fit(data['train'], epochs=30, num_threads=2)
 
 # Done! We should now evaluate the model to see how well it's doing. We're most interested in how good the ranking produced by the model is. Precision@k is one suitable metric, expressing the percentage of top k items in the ranking the user has actually interacted with. `lightfm` implements a number of metrics in the `evaluation` module. 
 
-# In[55]:
+# In[5]:
 
 from lightfm.evaluation import precision_at_k
 
 
 # We'll measure precision in both the train and the test set.
 
-# In[58]:
+# In[6]:
 
 print("Train precision: %.2f" % precision_at_k(model, data['train'], k=5).mean())
 print("Test precision: %.2f" % precision_at_k(model, data['test'], k=5).mean())
@@ -63,7 +63,7 @@ print("Test precision: %.2f" % precision_at_k(model, data['test'], k=5).mean())
 # 
 # For an alternative way of judging the model, we can sample a couple of users and get their recommendations. To make predictions for given user, we pass the id of that user and the ids of all products we want predictions for into the `predict` method.
 
-# In[60]:
+# In[7]:
 
 def sample_recommendation(model, data, user_ids):
     
