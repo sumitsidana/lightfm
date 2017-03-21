@@ -17,11 +17,23 @@ from lightfm.datasets import fetch_movielens
 data = fetch_movielens(min_rating=5.0)
 
 
+<<<<<<< HEAD
+=======
+# In[2]:
+
+print(data['train'])
+
+
+>>>>>>> 2dc79ab54baf347351d454ba9df1706ce8dd49b7
 # This downloads the dataset and automatically pre-processes it into sparse matrices suitable for further calculation. In particular, it prepares the sparse user-item matrices, containing positive entries where a user interacted with a product, and zeros otherwise.
 # 
 # We have two such matrices, a training and a testing set. Both have around 1000 users and 1700 items. We'll train the model on the train matrix but test it on the test matrix.
 
+<<<<<<< HEAD
 # In[2]:
+=======
+# In[3]:
+>>>>>>> 2dc79ab54baf347351d454ba9df1706ce8dd49b7
 
 print(repr(data['train']))
 print(repr(data['test']))
@@ -29,7 +41,11 @@ print(repr(data['test']))
 
 # We need to import the model class to fit the model:
 
+<<<<<<< HEAD
 # In[3]:
+=======
+# In[4]:
+>>>>>>> 2dc79ab54baf347351d454ba9df1706ce8dd49b7
 
 from lightfm import LightFM
 
@@ -38,22 +54,37 @@ from lightfm import LightFM
 # 
 # Model training is accomplished via SGD (stochastic gradient descent). This means that for every pass through the data --- an epoch --- the model learns to fit the data more and more closely. We'll run it for 10 epochs in this example. We can also run it on multiple cores, so we'll set that to 2. (The dataset in this example is too small for that to make a difference, but it will matter on bigger datasets.)
 
+<<<<<<< HEAD
 # In[57]:
 
 model = LightFM(loss='warp')
 model.fit(data['train'], epochs=30, num_threads=2)
+=======
+# In[5]:
+
+model = LightFM(loss='warp')
+get_ipython().magic(u"time model.fit(data['train'], epochs=30, num_threads=2)")
+>>>>>>> 2dc79ab54baf347351d454ba9df1706ce8dd49b7
 
 
 # Done! We should now evaluate the model to see how well it's doing. We're most interested in how good the ranking produced by the model is. Precision@k is one suitable metric, expressing the percentage of top k items in the ranking the user has actually interacted with. `lightfm` implements a number of metrics in the `evaluation` module. 
 
+<<<<<<< HEAD
 # In[55]:
+=======
+# In[6]:
+>>>>>>> 2dc79ab54baf347351d454ba9df1706ce8dd49b7
 
 from lightfm.evaluation import precision_at_k
 
 
 # We'll measure precision in both the train and the test set.
 
+<<<<<<< HEAD
 # In[58]:
+=======
+# In[7]:
+>>>>>>> 2dc79ab54baf347351d454ba9df1706ce8dd49b7
 
 print("Train precision: %.2f" % precision_at_k(model, data['train'], k=5).mean())
 print("Test precision: %.2f" % precision_at_k(model, data['test'], k=5).mean())
@@ -63,7 +94,11 @@ print("Test precision: %.2f" % precision_at_k(model, data['test'], k=5).mean())
 # 
 # For an alternative way of judging the model, we can sample a couple of users and get their recommendations. To make predictions for given user, we pass the id of that user and the ids of all products we want predictions for into the `predict` method.
 
+<<<<<<< HEAD
 # In[60]:
+=======
+# In[8]:
+>>>>>>> 2dc79ab54baf347351d454ba9df1706ce8dd49b7
 
 def sample_recommendation(model, data, user_ids):
     
